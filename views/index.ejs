@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-  include('./partials/head.ejs') %>
+<body>
+
+    <%-  include('./partials/nav.ejs') %>
+
+    <div class="blogs content">
+      <h2>All Memes</h2>
+      <div>
+      <% if(memes.length > 0){cnt=1 %>
+        <% memes.forEach(meme => { %>
+          <% if(cnt<=100){ %>
+          <div class="maindiv">
+            <a class="single" href="/memes/<%= meme._id %>">
+              <div class="operation">
+                
+                <div style="font-size: 20px;">#<%= cnt %></div>
+                
+                <ul>
+                  
+                  <li>
+                    <a href="/memes/edit/<%= meme.title %>/<%= meme._id%>" class="editt"><img src="https://p.kindpng.com/picc/s/154-1541056_edit-edit-icon-svg-hd-png-download.png" alt="" width="20px" ></a>
+                  </li>
+                  
+                  <li>
+                    <form action="/memes/<%= meme._id %>?_method=DELETE" method="POST">
+                    <button class="red_cross" >x</button>
+                    </form>
+                  </li>
+              
+                </ul>
+              </div>
+              <!-- <a href="">a</a> -->
+              <!-- <a href="/memes/edit" ><img class="edit" src="https://p.kindpng.com/picc/s/154-1541056_edit-edit-icon-svg-hd-png-download.png" alt="edit meme"></a> -->
+              <img id="imgg" src="<%=  meme.body %>" alt="" onerror="this.onerror=null;this.src='https://pbs.twimg.com/media/C26VJ-XUcAAZQkK.jpg';" width=455" height="280">
+              <!-- <br> -->
+              <!-- <br> -->
+              <p class="snippet"><%= meme.snippet %></p>
+              <!-- <br> -->
+              <hr class="line">
+              <h3 class="title"><%= meme.title %></h3>
+              <!-- <img src="<%=meme.url%>" class="meme-image"  > -->
+              <!-- <p class="detail"><%=  meme.body %></p> -->
+              <!-- read more.... -->
+            </a>
+            </div>
+          <br>
+          <% } %>
+          <% cnt++ %>
+        <% }) %>
+      <%}else{ %>
+        <p>There are no memes to display</p>
+        <% } %>
+      </div>
+    </div>
+    <%-  include('./partials/footer.ejs') %>
+</body>
+</html>

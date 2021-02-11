@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-  include('./partials/head.ejs') %>
+<body>
+    
+
+    <%-  include('./partials/nav.ejs') %>
+
+    <div class="details content">
+      <h2><%= meme.title %></h2>
+      <div class="content">
+          <p><%= meme.body %></p>
+          <p><%= meme.body %></p>
+          <p><%= meme._id %></p>
+      </div>
+      <form class="delete" action="/memes/<%= meme._id %>?_method=DELETE" method="POST">
+        <button class="delete">Delete</button>
+    </form>
+      <!-- <a class="delete" data-doc="<%= meme._id %>" >delete</a> -->
+    </div>
+    <%-  include('./partials/footer.ejs') %>
+
+    <!-- <script>
+        const trashcan = document.querySelector('a.delete');
+        trashcan.addEventListener('click', (e) => {
+            const endpoint = '/memes/ $ {trashcan.dataset.doc}';
+            fetch(endpoint, {
+                method : 'DELETE'
+            })
+            .then((response) => response.json())
+            .then((data) => window.location.href = data.redirect)
+            .catch( err => console.log());
+        })
+    </script> -->
+</body>
+</html>
